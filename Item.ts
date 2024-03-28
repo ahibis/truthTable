@@ -3,5 +3,6 @@ export default interface Item {
   name: string;
   vecToString(): string;
   toString(): string;
+  mask:number;
   primitives:number;
 }

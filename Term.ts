@@ -3,9 +3,10 @@ export default class Term implements Item {
   vector = 0;
   name = "";
   primitives = 0;
-
+  mask = 0;
   constructor(number: number, count: number) {
     this.name = "x" + number;
+    this.mask = 2 ** (2 ** count) - 1;
     const bunchCount = 2 ** (count - number - 1);
     const length = 2 ** count;
     let vector = 0

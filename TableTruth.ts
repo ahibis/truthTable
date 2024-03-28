@@ -1,7 +1,6 @@
 import Item from "./Item";
 import Operation from "./operations/Operation";
 import Term from "./Term";
-import Mask from "./Mask";
 
 export default class TableTruth {
   itemsByPrimitives: Item[][] = [];
@@ -25,7 +24,6 @@ export default class TableTruth {
     }
     const maxSize = 2 ** (2 ** termCount);
     let i = 0;
-    const mask = new Mask(termCount);
 
     while (this.foundTerms.size < maxSize) {
       this.itemsByPrimitives[i + 1] = [];
@@ -33,7 +31,7 @@ export default class TableTruth {
       for (let Operation of Operations) {
         if (Operation.termsCount == 1) {
           for (let item of this.itemsByPrimitives[i]) {
-            this.addItem(new Operation(item, mask));
+            this.addItem(new Operation(item));
           }
         }
 
@@ -43,7 +41,7 @@ export default class TableTruth {
             const items1 = this.itemsByPrimitives[i - k];
             for (let item0 of items0) {
               for (let item1 of items1) {
-                this.addItem(new Operation(item0, item1, mask));
+                this.addItem(new Operation(item0, item1));
               }
             }
           }
