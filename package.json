@@ -1,0 +1,8 @@
+{
+  "name": "truthTable",
+  "version": "0.2.0",
+  "description": "a project to find short Boolean expressions for some variables",
+  "main": "main.js",
+  "author": "ahibis<pokesteve31@gmail.com>",
+  "license": "MIT"
+}
