@@ -32,4 +32,4 @@ const x1 = new Term(1,3);
 
 // console.log(new TableTruth(3, [Not, And, Or, Xor, Imp, Eq, Nor, Nand]).toString());
 
-// console.log(calculate("(x & y) ^ (y | x)"))
+console.log(calculate("(x & y) ^ (y | x)"))
