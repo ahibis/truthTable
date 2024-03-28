@@ -1,27 +1,31 @@
 import Item from "./Item";
 import Operation from "./operations/Operation";
 import Term from "./Term";
+import Mask from "./Mask";
 
 export default class TableTruth {
   itemsByPrimitives: Item[][] = [];
-  foundTerms = new Map<string, Item>();
+  foundTerms = new Map<number, Item>();
+  termCount = 0;
   addItem(item: Item) {
-    if (this.foundTerms.has(item.vecToString())) {
+    if (this.foundTerms.has(item.vector)) {
       return;
     }
 
-    this.foundTerms.set(item.vecToString(), item);
+    this.foundTerms.set(item.vector, item);
     const primitives = item.primitives;
 
     this.itemsByPrimitives[primitives].push(item);
   }
   constructor(termCount: number, Operations: (typeof Operation)[]) {
     this.itemsByPrimitives[0] = [];
+    this.termCount = termCount;
     for (let i = 0; i < termCount; i++) {
       this.addItem(new Term(i, termCount));
     }
     const maxSize = 2 ** (2 ** termCount);
     let i = 0;
+    const mask = new Mask(termCount);
 
     while (this.foundTerms.size < maxSize) {
       this.itemsByPrimitives[i + 1] = [];
@@ -29,7 +33,7 @@ export default class TableTruth {
       for (let Operation of Operations) {
         if (Operation.termsCount == 1) {
           for (let item of this.itemsByPrimitives[i]) {
-            this.addItem(new Operation(item));
+            this.addItem(new Operation(item, mask));
           }
         }
 
@@ -39,27 +43,28 @@ export default class TableTruth {
             const items1 = this.itemsByPrimitives[i - k];
             for (let item0 of items0) {
               for (let item1 of items1) {
-                this.addItem(new Operation(item0, item1));
+                this.addItem(new Operation(item0, item1, mask));
               }
             }
           }
         }
       }
-      console.log(`${i+1} итерация`)
+      console.log(`${i + 1} итерация`);
       i += 1;
     }
   }
   toString() {
+    const vecSize = 2 ** this.termCount;
     const res = [...this.foundTerms.entries()]
-      .sort((a, b) => a[0] < b[0] ? -1 : 1)
-      .map(([k, v]) => `${eval("0b" + k)} : ${v.toString()} - ${v.primitives}`)
+      .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+      .map(([k, v]) => `${k.toString(2).padStart(vecSize, "0")} : ${v.toString()} - ${v.primitives}`)
       .join("\n");
 
-    return res
+    return res;
   }
-  toPrimitives(){
+  toPrimitives() {
     return [...this.foundTerms.entries()]
-    .sort((a, b) => a[0] < b[0] ? -1 : 1)
-    .map(([k,v])=>v.primitives)
+      .sort((a, b) => (a[0] < b[0] ? -1 : 1))
+      .map(([k, v]) => v.primitives);
   }
 }

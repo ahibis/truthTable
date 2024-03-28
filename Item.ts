@@ -1,5 +1,5 @@
 export default interface Item {
-  vector: number[];
+  vector: number;
   name: string;
   vecToString(): string;
   toString(): string;
