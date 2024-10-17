@@ -7,8 +7,11 @@ import Imp from "./operations/Imp";
 import Eq from "./operations/Eq";
 import Nor from "./operations/Nor";
 import Nand from "./operations/Nand";
+import Gt from "./operations/Gt";
 import TableTruth from "./TableTruth";
 import calculate from "./equation";
+import {writeFile} from "fs/promises";
+
 
 const x0 = new Term(0,3);
 const x1 = new Term(1,3);
@@ -32,4 +35,11 @@ const x1 = new Term(1,3);
 
 // console.log(new TableTruth(3, [Not, And, Or, Xor, Imp, Eq, Nor, Nand]).toString());
 
-console.log(calculate("(x & y) ^ (y | x)"))
+// console.log(calculate("(x & y) ^ (y | x)"))
+
+
+const text = new TableTruth(2, [ Not, And, Or, Xor, Eq]).toString()
+
+writeFile("./table2.txt", text);
+
+

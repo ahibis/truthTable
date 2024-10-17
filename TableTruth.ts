@@ -48,6 +48,7 @@ export default class TableTruth {
         }
       }
       console.log(`${i + 1} итерация`);
+      if(i==5) break;
       i += 1;
     }
   }

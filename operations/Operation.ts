@@ -20,4 +20,7 @@ export default class Operation implements Item {
   toString(): string {
     return this.name;
   }
+  invertVector(vector: number){
+    return vector ^ this.mask;
+  }
 }
