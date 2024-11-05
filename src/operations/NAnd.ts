@@ -1,7 +1,7 @@
 import Item from "../Item";
 import Operation from "./Operation";
 
-export default class Nand extends Operation {
+export default class NAnd extends Operation {
   static termsCount = 2;
   constructor(...terms: Item[]) {
     super(...terms);

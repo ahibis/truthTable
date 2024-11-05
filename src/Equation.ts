@@ -1,13 +1,6 @@
 import Term from "./Term";
 import Item from "./Item";
-import Not from "./operations/Not";
-import And from "./operations/And";
-import Or from "./operations/Or";
-import Xor from "./operations/Xor";
-import Imp from "./operations/Imp";
-import Eq from "./operations/Eq";
-import Nor from "./operations/Nor";
-import Nand from "./operations/Nand";
+import {Not, And, NAnd, Nor, Or, Eq, Gt, Imp, Xor} from "./operations"
 
 const operators = {
   "~": (a: Item) => new Not(a),
@@ -19,6 +12,9 @@ const operators = {
   "&": (a: Item, b: Item) => new And(a, b),
   "^": (a: Item, b: Item) => new Xor(a, b),
   "=": (a: Item, b: Item) => new Eq(a, b),
+  ">": (a: Item, b: Item) => new Gt(a, b),
+  "->": (a: Item, b: Item) => new Imp(a, b),
+  "!&": (a: Item, b: Item) => new NAnd(a,b)
 };
 
 function operatorsHandler1(regExp: RegExp) {

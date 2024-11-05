@@ -1,5 +1,5 @@
 import Item from "./Item";
-import Operation from "./operations/Operation";
+import {Operation} from "./operations";
 import Term from "./Term";
 
 export default class TableTruth {

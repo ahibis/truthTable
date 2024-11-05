@@ -1,21 +1,9 @@
-import Term from "./Term";
-import Not from "./operations/Not";
-import And from "./operations/And";
-import Or from "./operations/Or";
-import Xor from "./operations/Xor";
-import Imp from "./operations/Imp";
-import Eq from "./operations/Eq";
-import Nor from "./operations/Nor";
-import Nand from "./operations/Nand";
-import Gt from "./operations/Gt";
-import TableTruth from "./TableTruth";
-import calculate from "./equation";
-import {writeFile} from "fs/promises";
+import { Equation, TableTruth, Operations, Term } from "./src";
+const { And, Eq, Gt, Imp, NAnd, Nor, Not, Or, Xor } = Operations;
+import { writeFile } from "fs/promises";
 
-
-const x0 = new Term(0,3);
-const x1 = new Term(1,3);
-
+const x0 = new Term(0, 3);
+const x1 = new Term(1, 3);
 
 // const nx0 = new Not(x0);
 // const ax01 = new And(x0, x1);
@@ -37,9 +25,7 @@ const x1 = new Term(1,3);
 
 // console.log(calculate("(x & y) ^ (y | x)"))
 
+const termsCount = 2;
+const text = new TableTruth(2, [Not, And, Or, Xor, Eq]).toString();
 
-const text = new TableTruth(2, [ Not, And, Or, Xor, Eq]).toString()
-
-writeFile("./table2.txt", text);
-
-
+writeFile("./results/table2.txt", text);
