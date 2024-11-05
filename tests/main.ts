@@ -1,4 +1,4 @@
-import { Equation, TableTruth, Operations, Term } from "./src";
+import { Equation, TableTruth, Operations, Term } from "../src/index";
 const { And, Eq, Gt, Imp, NAnd, Nor, Not, Or, Xor } = Operations;
 import { writeFile } from "fs/promises";
 
@@ -27,5 +27,5 @@ const x1 = new Term(1, 3);
 
 const termsCount = 2;
 const text = new TableTruth(2, [Not, And, Or, Xor, Eq]).toString();
-
-writeFile("./results/table2.txt", text);
+// console.log(text)
+writeFile("results/table2.txt", text);
