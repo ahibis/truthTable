@@ -5,7 +5,7 @@ export default class Imp extends Operation{
   static termsCount = 2;
   calculateVector(){
     const [term0,term1] = this.terms;
-    return this.invertVector(term0.vector) | term1.vector
+    return this.invertTruthVector(term0.truthVector) | term1.truthVector
   }
   operationSign = "->"
 }

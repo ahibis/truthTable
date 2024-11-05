@@ -7,12 +7,12 @@ export default class TableTruth {
   foundTerms = new Map<number, Item>();
   termCount = 0;
   addItem(item: Item) {
-    if (this.foundTerms.has(item.vector)) {
+    if (this.foundTerms.has(item.truthVector)) {
       return;
     }
 
-    this.foundTerms.set(item.vector, item);
-    const primitives = item.primitives;
+    this.foundTerms.set(item.truthVector, item);
+    const primitives = item.ItemCount;
 
     this.itemsByPrimitives[primitives].push(item);
   }
@@ -56,7 +56,7 @@ export default class TableTruth {
     const vecSize = 2 ** this.termCount;
     const res = [...this.foundTerms.entries()]
       .sort((a, b) => (a[0] < b[0] ? -1 : 1))
-      .map(([k, v]) => `${k.toString(2).padStart(vecSize, "0")} : ${v.toString()} - ${v.primitives}`)
+      .map(([k, v]) => `${k.toString(2).padStart(vecSize, "0")} : ${v.toString()} - ${v.ItemCount}`)
       .join("\n");
 
     return res;
@@ -64,6 +64,6 @@ export default class TableTruth {
   toPrimitives() {
     return [...this.foundTerms.entries()]
       .sort((a, b) => (a[0] < b[0] ? -1 : 1))
-      .map(([k, v]) => v.primitives);
+      .map(([k, v]) => v.ItemCount);
   }
 }

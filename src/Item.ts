@@ -1,8 +1,8 @@
 export default interface Item {
-  vector: number;
+  truthVector: number;
   name: string;
   vecToString(): string;
   toString(): string;
   mask:number;
-  primitives:number;
+  ItemCount:number;
 }

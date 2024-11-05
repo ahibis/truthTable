@@ -1,10 +1,10 @@
 import Item from "../Item";
-import Operation from "./Operation"
+import Operation from "./Operation";
 
-export default class And extends Operation{
+export default class And extends Operation {
   static termsCount = 2;
-  calculateVector(term0: Item,term1 : Item){
-    return term0.vector & term1.vector
+  calculateVector(term0: Item, term1: Item) {
+    return term0.truthVector & term1.truthVector;
   }
-  operationSign = "&"
+  operationSign = "&";
 }

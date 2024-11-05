@@ -5,7 +5,7 @@ export default class Or extends Operation{
   static termsCount = 2;
   calculateVector(){
     const [term0,term1] = this.terms;
-    return term0.vector | term1.vector
+    return term0.truthVector | term1.truthVector
   }
   operationSign = "|"
 }
